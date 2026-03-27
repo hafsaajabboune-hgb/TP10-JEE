@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .user-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .username {
+            color: #334155;
+        }
+
+        .logout {
+            background: #f1f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #475569;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .welcome {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .welcome h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #64748b;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .card a {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            background: #1e293b;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">SECURE APP</div>
+    <div class="user-info">
+        <span class="username" sec:authentication="name">user</span>
+        <a th:href="@{/logout}" class="logout">Déconnexion</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="welcome">
+        <h1 th:text="'Bienvenue, ' + ${currentUser} + '!'">Bienvenue!</h1>
+        <p>Sélectionnez un espace selon vos droits d'accès</p>
+    </div>
+
+    <div class="cards">
+        <div sec:authorize="hasRole('USER')" class="card">
+            <h3>Espace Utilisateur</h3>
+            <p>Accès aux fonctionnalités de base</p>
+            <a th:href="@{/user}">Accéder →</a>
+        </div>
+
+        <div sec:authorize="hasRole('MANAGER')" class="card">
+            <h3>Espace Gestionnaire</h3>
+            <p>Gestion des équipes et rapports</p>
+            <a th:href="@{/management}">Accéder →</a>
+        </div>
+
+        <div sec:authorize="hasRole('ADMIN')" class="card">
+            <h3>Administration</h3>
+            <p>Configuration et gestion des utilisateurs</p>
+            <a th:href="@{/admin}">Accéder →</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;
+        }
+
+        .nav {
+            background: #1e293b;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #1e293b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <div>ESPACE GESTIONNAIRE</div>
+    <a th:href="@{/logout}">Déconnexion</a>
+</div>
+
+<div class="container">
+    <div class="header">
+        <h1>Tableau de bord opérationnel</h1>
+        <p>Bienvenue, <span th:text="${currentUser}"></span></p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Équipes supervisées</h3>
+            <div class="card-value">2</div>
+            <p>Équipe Développement (4 membres)</p>
+            <p>Équipe Support (3 membres)</p>
+        </div>
+
+        <div class="card">
+            <h3>Rapports générés</h3>
+            <div class="card-value">12</div>
+            <p>Rapport mensuel - Janvier 2026</p>
+            <p>Rapport trimestriel - T1 2026</p>
+        </div>
+
+        <div class="card">
+            <h3>Demandes en attente</h3>
+            <div class="card-value">3</div>
+            <p>Demande d'accès - Nouvel employé</p>
+            <p>Validation de congés</p>
+        </div>
+    </div>
+
+    <a th:href="@{/dashboard}" class="back">← Retour</a>
+</div>
+</body>
+</html>

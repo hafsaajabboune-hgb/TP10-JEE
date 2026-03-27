@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Espace Utilisateur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;
+        }
+
+        .nav {
+            background: #334155;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .profile {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h3 {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #334155;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <div>ESPACE UTILISATEUR</div>
+    <a th:href="@{/logout}">Déconnexion</a>
+</div>
+
+<div class="container">
+    <div class="profile">
+        <h1>Mon espace personnel</h1>
+        <p>Bienvenue dans votre interface utilisateur</p>
+    </div>
+
+    <div class="info-grid">
+        <div class="info">
+            <div class="info-label">IDENTIFIANT</div>
+            <div class="info-value" th:text="${currentUser}">user</div>
+        </div>
+        <div class="info">
+            <div class="info-label">STATUT</div>
+            <div class="info-value">Actif</div>
+        </div>
+        <div class="info">
+            <div class="info-label">DERNIÈRE CONNEXION</div>
+            <div class="info-value">Aujourd'hui</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Documents personnels</h3>
+        <ul>
+            <li>Manuel d'utilisation v3.0 (PDF, 2.4 MB)</li>
+            <li>Guide de démarrage rapide (PDF, 856 KB)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Sécurité</h3>
+        <ul>
+            <li>Authentification: Formulaire personnalisé</li>
+            <li>Session: 1 session maximum</li>
+            <li>Expiration: 30 minutes</li>
+        </ul>
+    </div>
+
+    <a th:href="@{/dashboard}" class="back">← Retour</a>
+</div>
+</body>
+</html>
